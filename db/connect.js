@@ -9,5 +9,14 @@ const connectdb = () => db.connect(process.env.MONGO_URL,{ useNewUrlParser: true
         console.log("Connected to the mongodb");
 });
 
-module.exports = connectdb;
+const disconnectdb = async () => {
+    try {
+		await db.disconnect();
+	} catch (err) {
+		throw new Error(err);
+	}
+}
+
+module.exports = {connectdb,disconnectdb};
+
 
